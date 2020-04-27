@@ -28,9 +28,9 @@ EXTRA: Once collected enough data, analyzing the interactions, the app could be 
 
 ---
 ## Documents
-* ##### [Design](./DESIGN.md)
+* ##### [Design](./Design.md)
 * ##### [Architecture](./ARCHITECTURE.md)
-* ##### [Evaluation](./EVALUATION.md)
+* ##### [Evaluation](./Evaluation.md)
 
 ---
 ## Video presentations
