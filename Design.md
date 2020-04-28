@@ -17,4 +17,6 @@ Maryen and Federico, instead, represent our second target, international student
 ## Storyboards
 
 ---
-A special thanks to Elisa L'Angiocola for the contribution
+
+## Mockup
+![img](./img/mockup.png)
