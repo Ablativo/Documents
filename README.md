@@ -33,8 +33,8 @@ EXTRA: Once collected enough data, analyzing the interactions, the app could be 
 
 ---
 ## Video presentations
-* ##### [Presentation of the idea and the evaluation plan]() (TODO)
-* ##### [Presentation of the technical approach and architecture](https://youtu.be/TFFulUF80F0)
+* ##### [Presentation of the idea and the evaluation plan](https://youtu.be/VOPcMZa7giw)
+* ##### [Presentation of the technical components and architecture](https://youtu.be/TFFulUF80F0)
 
 ---
 ## Authors
