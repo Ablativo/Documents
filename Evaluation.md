@@ -36,6 +36,23 @@ Another face of the same coin, a technical evaluation is a fundamental step of o
 4. The mobile device must be able to read the UUID of the beacon it interacts with
 5. If the user moves away, the mobile device must be able to understand that it is no longer near the work of art
 
+#### Mobile-Application <---> BackEnd
+1. The mobile application must be able to send request to and receive response from the back-end via HTTP through fetch construct.
+2. The mobile application must be able to interact with the backend in order to estabilish a dialog between the user and the mentor/statue, receiving and sending messages.
+3. The interaction between the mobile application and the backend must be safe and guarantee the privacy of the user.
+4. The interaction between the mobile application and the backend must guarantee a predictable behaviour in case of failures or critical situation.
+5. The interaction between the mobile application and the backend must guarantee a correct behaviour in case of unexpected input or situation.
+6. The mobile application must be able to guarantee the login on the application.
+7. The interaction between the mobile application and the backend must be flexible so that fixes, upgrade and new development can be easily implemented.
+8. The user should be able to choose and change the mentor, so the application must be able to comunicate that operation to the backend.
+
+#### Database <---> BackEnd
+1. The database must be able to interact with the database through a query system, in particular all the information on the database must be retrieved and eventually updated or deleted.
+2. The database should be reachable in every moment, in case of fault the system must be able to control the situation.
+3. Eventually sensible data must be encrypted by the backend before the insertion.
+4. The interaction between the database and the backend must be able to guarantee backup services and disaster recovery procedures.
+5. The interaction between the database and the backend must guarantee the consistency of the information stored.
+
 #### Dashboard <---> BackEnd
 1. The dashboard must be able to send request to and receive response from the back-end via HTTP
 2. The dashboard must be able to insert/delete works of arts, interacting with the back-end
