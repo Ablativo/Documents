@@ -16,7 +16,8 @@ Maryen and Federico, instead, represent our second target, international student
 
 ## Storyboards
 
----
+![img](./img/storyboard_first_part.png)
+![img](./img/storyboard_second_part.png)
 
 ## Mockup
 ![img](./img/mockup.png)
