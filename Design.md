@@ -30,27 +30,16 @@ EXTRA: Once collected enough data, analyzing the interactions, the app could be 
 ## User personas
 All the user personas are inspired by real people that gave their contribution to the survey and showed particular interest in the project.
 
-#### Visitors
-For the visitors, we have as main actors, Lorenzo and Martina, representing all those guys, like us, boys and girls, with different personalities, that appreciate the opportunities provided by the application we are building.
+The main actors, Lorenzo and Martina, represent all those guys, like us, boys and girls, with different personalities, that appreciate the opportunities provided by the application we are building.
 
 Maryen and Federico, instead, represent our second target, international students, and older users. Indeed, our survey had a lot of success also with these other 2 categories of people. Therefore, we want to avoid focusing too much on the first category, penalizing the other possible users.
 
 ![img](./img/main_personas.png)
 ![img](./img/extend_personas.png)
 
-#### Museum curator
-![img](./img/paolo.png)
-
-
 ## Storyboards
-
-#### Visitor
 ![img](./img/storyboard_first_part.png)
 ![img](./img/storyboard_second_part.png)
 
-#### Museum curator
-![img](./img/storyboard2.png)
-
-
-## Mockup app
+## Mockup
 ![img](./img/mockup.png)

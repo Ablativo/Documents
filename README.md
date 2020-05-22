@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Ablativo/ablativo/master/img/logo.png">
-</p>
 
 # Ablativo
 Museums, the house of muses, some people love them, but for some, it is no more than a boring collection of lifeless things. 
@@ -29,4 +26,4 @@ We are three computer engineers and students of the MSc of engineering in comput
 
 ## Collaborators
 * ##### [Elisa L'Angiocola](http://linkedin.com/in/elisa-l-angiocola-57a69353)  (Design advisor)
-* ##### [Lorenzo Urzia](http://linkedin.com/in/lorenzo-urzia-775203167) (logo creator)
+
