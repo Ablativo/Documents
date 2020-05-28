@@ -24,7 +24,8 @@ Make artworks come to life!
 2. When he/she approaches an artwork, it starts a new conversation with the user, via chat;
 3. The user can now choose which question ask to the statue (for now precompiled ones);
 4. The artwork, simulated by a bot, can answer questions or even make proposals to the user.
-5. While the user visits the museum, the mobile application will collect data about his/her personal experience. At the end of the visit, a machine learning algorithm will mix them with those provided by the environmental sensors, and elaborate everything to produce a pleasant song. A final romantic gift to remember the emotions experienced during the visit. 
+
+While the user visits the museum, the mobile application will collect data about his/her personal experience. At the end of the visit, a machine learning algorithm will mix them with those provided by the environmental sensors, and elaborate everything to produce a pleasant song. A final romantic gift to remember the emotions experienced during the visit. 
 
 
 #### BENEFITS
@@ -68,5 +69,6 @@ Maryen and Federico, instead, represent our second target, international student
 ![img](./img/mockup.png)
 
 ---
-## Previous versions
+## Previous versions
+
 * [Design - delivery 1](https://github.com/Ablativo/ablativo/blob/1st-delivery/Design.md)
