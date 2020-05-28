@@ -1,7 +1,7 @@
 # Evaluation
 This document aims to provide details on how to evaluate the product, first from a user experience point of view, and then from a technical point of view.
 
-<div style="text-align:center"><img src="./img/kpi.png" width="600" /></div>
+<div align="center"><img src="./img/kpi.png" width="600" /></div>
 
 We based our evaluation model in the well known **Key Performance Indicators**. The generic identikit of the KPIs must meet certain characteristics: the indicators must be ***quantifiable*** (and therefore measurable); ***management***, i.e. they must indicate whether the company is growing or not; ***operational***, and therefore exercise an effective change in the strategy adopted; finally ***practical***, and therefore adaptable to business needs.
 
@@ -61,9 +61,7 @@ Technical evaluation is a fundamental step in our work.
     * *3rd Delivery*: The 3 sensors will be real.
 
 * **Smartphone sensors**: we retrieve the values from the smartphone sensors of every user. These values will be real.
-    * *2nd Delivery*: we are able to collect the values with a frequency of 1Hz (1 message per second)
-
-    * *3rd Delivery*: The values will be grouped and sent periodically
+    * *3rd Delivery*: we will be able to collect the values with a frequency of 1Hz (1 message per second). The values will be grouped and sent periodically
 
 * **Heart Rate sensor**:
     * *2nd Delivery*: The values will be simulated with a JS script that with a frequency of 1Hz generates random values and send them to the cloud and to the backend of the application.
@@ -77,7 +75,6 @@ We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Co
 * ✅ Completed
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
-* **Complexity**: complexity can be attributed to hardware, software needed for the system
 * **Robustness**: the system's ability to resist interference and noise from nearby sensors
 * **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
 * **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy. The time factor is linked to installation and maintenance times.
@@ -88,12 +85,11 @@ We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Co
 | Metrics | Status |Solution/Result |
 | ------------- |:---:| :-----|
 | `Accessibility` | ✅ | Battery-powered that can last up to 2 years, they can be placed on any surface, accessible from the mobile app |
-| `Complexity` | ✅ | The architecture is very simple to install and to develop (see [Architecture](./Architecture.md) section for more details) |
-| `Robustness` | ⚠️ | Study of the museum's plan to identify strategic points where to place the sensor
+| `Robustness` | ✅ | Strategic points where to place the sensor. 1 beacon per room instead of 1 beacon per statue
 | `Scalability` | ✅ | Beacons transmit only output signals 
 | `Cost` | ⚠️ | Cost of sensors (see [Architecture](./Architecture.md) section for more details) + Cost of Google Cloud Platform |
 | `Security` | ✅ | Beacons transmit output signals, there is no intrinsic safety risk in the transmission |
-| `Failure detection` | ✅ | Every 10 minutes the beacons sends an alive-messages to the cloud |
+| `Failure detection` | ⚠️ | Every 10 minutes the beacons sends an alive-messages to the cloud |
 
 **NOTE**: we will be able to do some measures only when we have the sensors in the hand.
 
@@ -103,7 +99,6 @@ We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Co
 * **Accuracy**: average error in calculating the distance from the statues.
 * **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate.
 * **Complexity**: complexity can be attributed to hardware, software needed for the system.
-* **Robustness**: the system's ability to resist interference and noise from nearby mobile devices.
 * **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
 * **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy.
 * **Security**: security means the danger that data sent through the system will be violated or accessed by third parties.
@@ -115,7 +110,6 @@ We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Co
 | `Accuracy` | ⚠️ | Calculated as the average of the Euclidean distance between the estimated and the real position |
 | `Precision` | ⚠️ | Comparison of the various measurements |
 | `Complexity` | ✅ | Thanks to the framework React native the implementation is very simple and fast |
-| `Robustness` | ✅ | Multiple requests by the nearby statues are managed by the backend and in case of indecision on what statue are the closest, we will ask the user with which wants to talk |
 | `Scalability` | ✅ | Being designed for an internal museum, it will have a number of connected users that will never be too high to affect scalability |
 | `Cost` | ✅ | In the future to handle big amount of data MongoDB could be a cost (not for the initial setup) |
 | `Security` | ✅ | All data provided by the users will be encrypted. No sensible data are needed |
@@ -130,8 +124,6 @@ Ablativo is made of five different components that need to fully interact with e
 #### Mobile application - Beacon sensor
 | Feature | Status |
 | :---- | :----: |
-| The beacon must be able to broadcast and accept BLE packets | ✅ (PoC)|
-| The beacon must be visible by the mobile devices | ✅ (PoC)|
 | The mobile device must be able to broadcast and accept BLE packets | ✅ (PoC) |
 | The mobile device must be able to read the UUID of the beacon it interacts with | ✅ (PoC) |
 | If the user moves away, the mobile device must be able to understand that it is no longer near the work of art | ⚠️ |
@@ -139,10 +131,10 @@ Ablativo is made of five different components that need to fully interact with e
 #### Mobile application - Smartphone sensor
 | Feature | Status |
 | :---- | :----: |
-| The mobile app must be able to retrieve values from the Accelerometer | ✅ |
-| The mobile app must be able to retrieve values from the Gyroscope | ✅ |
-| The mobile app must be able to retrieve values from the Microphone | ✅ |
-| The mobile app must be able to retrieve values from the Ambient Light Sensor | ✅ |
+| The mobile app must be able to retrieve values from the Accelerometer | ⚠️ |
+| The mobile app must be able to retrieve values from the Gyroscope | ⚠️ |
+| The mobile app must be able to retrieve values from the Microphone | ⚠️ |
+| The mobile app must be able to retrieve values from the Ambient Light Sensor | ⚠️ |
 
 #### Mobile-Application - BackEnd
 | Feature | Status |
@@ -186,12 +178,16 @@ Ablativo is made of five different components that need to fully interact with e
 | The BackEnd must be able to establish a connection with google cloud platform | ✅ |
 | The BackEnd must be able to describe the topic referred to the sensors failures detection | ✅ |
 
-#### Google Cloud Platform - External sensor
+#### Embedded system
 | Feature | Status |
 | :---- | :----: |
-| The GCP must be able to retrieve values from the Temperature sensor | ✅ (PoC) |
-| The GCP must be able to retrieve values from the Humidity sensor | ✅ (PoC) |
-| The GCP must be able to retrieve values from the Heart Rate sensor | ✅ (PoC) |
+| The STM32 nucleo board must be able to interact with the X-NUCLEO-IDB05A1 expansion board (Bluetooth) | ⚠️ |
+| The STM32 nucleo board must be able to interact with the X-NUCLEO-IDW01M1 expansion board (Wifi) | ✅ |
+| The STM32 nucleo board must be able to interact with the X-NUCLEO-IKS01A2 expansion board (sensors) | ⚠️ |
+| The Nucleo board must be able to establish a wifi connection | ✅ |
+| The Nucleo board must be able to send values through an MQTT connection | ⚠️ |
+| The Nucleo board must be able to broadcast and accept BLE packets | ⚠️ |
+| The Nucleo board must be visible by the mobile devices | ⚠️ |
 
 #### User activity/emotion recognition - Music Generation
 | Feature | Status |

@@ -5,7 +5,14 @@ Since the application is thought to be used by everyone who could enjoy a visit 
 It gave us an idea of the opinions people would have (explained in the "Evaluation" document), and helped us to better understand who and how the user would use our product.
 
 ---
-## Idea
+### Table of contents
+* [Idea](#idea)
+* [User personas](#up)
+* [Storyboards](#story)
+* [Mockup app](#mock)
+
+---
+## <a id="idea"></a>Idea
 
 #### PROBLEM
 For most people museums are boring, out-of-date, still too far from the contemporary idea of interactivity. 
@@ -31,7 +38,7 @@ Therefore, they are not forced to read the entire description, but only ask for 
 EXTRA: Once collected enough data, analyzing the interactions, the app could be extended to a real path inside the museum, guided by the statues. A real "treasure hunt" with the suggestions of the artworks.
 
 ---
-## User personas
+## <a id="up"></a>User personas
 All the user personas are inspired by real people that gave their contribution to the survey and showed particular interest in the project.
 
 #### Visitors
@@ -46,7 +53,7 @@ Maryen and Federico, instead, represent our second target, international student
 ![img](./img/paolo.png)
 
 ---
-## Storyboards
+## <a id="story"></a>Storyboards
 
 #### Visitor
 ![img](./img/storyboard_first_part.png)
@@ -57,7 +64,7 @@ Maryen and Federico, instead, represent our second target, international student
 ![img](./img/storyboard2.png)
 
 ---
-## Mockup app
+## <a id="mock"></a>Mockup app
 ![img](./img/mockup.png)
 
 ---

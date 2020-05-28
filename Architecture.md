@@ -26,24 +26,16 @@ Now we have a general overview and we can go into the details of the components 
 ---
 ### Table of contents
 * [Mobile application](#app)
-
 * [BackEnd](#be)
-
 * [DataBase](#db)
-
 * [Dashboard for data analysis](#dboard)
-
 * [Google Cloud Platform](#gcp)
-
 * [Sensors](#sensors)
     * [Real Beacon](#beacon)
     * [Simulated Sensors](#simsens)
     * [Smartphone Sensors](#smartsens)
-
 * [User Activity/Emotion recognition](#uaer)
-
 * [Music generation](#rnn)
-
 * [Previous versions](#prev)
 
 
@@ -65,7 +57,7 @@ Data storing module, contains all the data of the application. Implemented with 
 
 ---
 ## <a id="dboard"></a>Dashboard for data analysis
-Management and monitoring module, practically speaking the admin console. In this case, a web application running on every browser developed in Handlebars, a simple templating language that uses a template and an input object to generate HTML or other text formats. Furthermore, we will use WebSockets transport protocol to show the data in real-time. Finally the basic technology for a common web application: BootstrapCSS, JavaScript, JQuery.
+Management and monitoring module, practically speaking the admin console. In this case, a web application running on every browser developed with AdminLTE, the best open source admin dashboard & control panel theme. Built on top of Bootstrap, AdminLTE provides a range of responsive, reusable, and commonly used components.
 
 ---
 ## <a id="gcp"></a>Google Cloud Platform
