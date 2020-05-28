@@ -16,9 +16,15 @@ However, here comes our application, Ablativo, intending to bring also those lea
 
 
 ## Video presentations
+
+#### 1st Delivery
 * ##### [Presentation of the idea and evaluation plan](https://youtu.be/VOPcMZa7giw)
 * ##### [Presentation of the technical components and architecture](https://youtu.be/TFFulUF80F0)
 
+#### 2nd Delivery
+* ##### [Presentation from a technical point of view](https://youtu.be/0feroPLvXQs)
+* ##### [Presentation of the evaluation plan](https://youtu.be/-5nHsma9eOs)
+* ##### [Presentation of the future plan and evaluation](https://youtu.be/FWWQo9qq54A)
 ---
 ## Authors
 We are three computer engineers and students of the MSc of engineering in computer science at "La Sapienza" University of Rome, this project as been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles.
