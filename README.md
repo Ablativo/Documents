@@ -36,7 +36,7 @@ However, here comes our application, Ablativo, intending to bring also those lea
 * ##### [Presentation of the future plan and evaluation](https://youtu.be/FWWQo9qq54A)
 ---
 ## Authors
-We are three computer engineers and students of the MSc of engineering in computer science at "La Sapienza" University of Rome, this project as been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles.
+We are three computer engineers and students of the MSc in engineering in computer science at "La Sapienza" University of Rome, this project has been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles
 * ##### [Valerio Coretti](https://www.linkedin.com/in/valerio-coretti-2913721a3)
 * ##### [Manuel Ivagnes](https://www.linkedin.com/in/manuel-ivagnes-4a5ba018b)
 * ##### [Fabio Caputo](https://www.linkedin.com/in/fabio-caputo-41163b171)
