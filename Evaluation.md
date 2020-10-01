@@ -45,34 +45,38 @@ Now, let's define the parameters we will use for the final evaluation:
     * The museum visitor can easily interact with the mentor, which will have as natural as possible human-like behavior
     * The museum visitor can easily interact with the statutes, which will have as natural as possible human-like behavior
     * The museum curator can easily understand and see the statistics of the metrics collected by the service
-* **Usability**: The response times of the chat must be rapid otherwise this could lead the user to not use it
+* **Usability**: The response times of the chat must be rapid, otherwise this may lead the user to not use it
 * **Graphic interface**: The interaction between the mentor and the works of art will seem as natural as possible. The overall interface must be user friendly.
 * **Privacy & Security**: Ablativo doesn't store any type of sensible data, the passwords will be encrypted.
 
 ---
 ## <a id="tech"></a>Technical aspects
-Technical evaluation is a fundamental step in our work.
+
+Glossary:
+* ✅ Completed
+* ⚠️ Work in progress
+* 🔜 For the future
 
 ### Environmental sensors measurements
-* **Ambient sensors**: Let's assume we have N rooms inside the museum. We will put one STM32 Nucleo board per room. The nucleo board is made of `Temperature`, `Humidity`, and `Beacon`.
-    * *2nd Delivery*: Temperature and Humidity sensors will be simulated with a JS script that generates random values and sends them to the cloud and to the backend of the application. We send the values every 5-10 minutes.
+* **Ambient sensors**: Let's assume we have N rooms inside the museum. We will put one STM board per room. The board has `Temperature`, `Humidity`, and `Pressure` sensors. Moreover, is works as a `Beacon`.
+    * *2nd Delivery*: Temperature and Humidity sensors are simulated with a JS script that generates random values and sends them to the cloud and to the backend of the application. We send the values every 5-10 minutes.
     Beacon will be simulated with a smartphone through the app [Beacon Simulator](https://play.google.com/store/apps/details?id=net.alea.beaconsimulator&hl=en)
 
-    * *3rd Delivery*: The 3 sensors will be real.
+    * *3rd Delivery*: The sensors will be real and so the beacon.
 
-* **Smartphone sensors**: we retrieve the values from the smartphone sensors of every user. These values will be real.
+* **Smartphone sensors**: we retrieve the values from the smartphone sensors of every user. These values are real.
     * *3rd Delivery*: we will be able to collect the values with a frequency of 1Hz (1 message per second). The values will be grouped and sent periodically
 
 * **Heart Rate sensor**:
     * *2nd Delivery*: The values will be simulated with a JS script that with a frequency of 1Hz generates random values and send them to the cloud and to the backend of the application.
     * *3rd Delivery*: This sensor will be possibly real. To do this we have 2 options: Smartphone Heart Rate sensor or Bend Heart Rate sensor.
 
-**NOTE**: The simulated version of the sensors allow us to check the connection between the BackEnd of the application and the Google Cloud Backend
-### Beacon STM32 
-We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Complexity`, `Robustness`, `Cost`, `Scalability`, `Security`. Together with these, depending on the component taken into consideration, there will be some more specific characteristics.
+**NOTE**: The simulated version of the sensors allow us to check the connection between the BackEnd of the application and the AWS Backend.
 
-* ⚠️ Work in progress
-* ✅ Completed
+### Beacon-Sensors board
+Our analysis is based on some specific metrics: `Accessibility`, `Accuracy`, `Complexity`, `Robustness`, `Cost`, `Scalability`, `Security`. Together with these, depending on the component taken into consideration, there will be some more specific characteristics.
+
+
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
 * **Robustness**: the system's ability to resist interference and noise from nearby sensors
@@ -87,17 +91,16 @@ We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Co
 | `Accessibility` | ✅ | Battery-powered that can last up to 2 years, they can be placed on any surface, accessible from the mobile app |
 | `Robustness` | ✅ | Strategic points where to place the sensor. 1 beacon per room instead of 1 beacon per statue
 | `Scalability` | ✅ | Beacons transmit only output signals 
-| `Cost` | ⚠️ | Cost of sensors (see [Architecture](./Architecture.md) section for more details) + Cost of Google Cloud Platform |
-| `Security` | ✅ | Beacons transmit output signals, there is no intrinsic safety risk in the transmission |
-| `Failure detection` | ⚠️ | Every 10 minutes the beacons sends an alive-messages to the cloud |
+| `Cost` | ⚠️ | Cost of sensors + Cost of the AWS infrastructure (see [Architecture](./Architecture.md) section for more details) |
+| `Security` | ✅ | Beacons transmit output signals, there is no intrinsic safety risk in the transmission. However, all the transmission are still encrypted and signed |
+| `Failure detection` | ✅ | The AWS IoT Core service gives the ability to check the status of the connect devices and therefore disconnections |
 
-**NOTE**: we will be able to do some measures only when we have the sensors in the hand.
 
-### Mobile app
+### Mobile app - Web dashboard
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
-* **Accuracy**: average error in calculating the distance from the statues.
-* **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate.
+* **Accuracy**: average error in calculating the distance from the statues (only for app) .
+* **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate (only for app) .
 * **Complexity**: complexity can be attributed to hardware, software needed for the system.
 * **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
 * **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy.
@@ -106,26 +109,29 @@ We based our analysis on some specific metrics: `Accessibility`, `Accuracy`, `Co
 ##### Metrics evaluation
 | Metrics | Status |Solution/Result |
 | ------------- |:---:| :----- |
-| `Accessibility` | ✅ | Accessible with a simple smartphone |
+| `Accessibility` | ✅ | Accessible with a simple smartphone - computer |
 | `Accuracy` | ⚠️ | Calculated as the average of the Euclidean distance between the estimated and the real position |
 | `Precision` | ⚠️ | Comparison of the various measurements |
-| `Complexity` | ✅ | Thanks to the framework React native the implementation is very simple and fast |
+| `Complexity` | ✅ | Thanks to the React and React native framework the implementation is very simple and fast |
 | `Scalability` | ✅ | Being designed for an internal museum, it will have a number of connected users that will never be too high to affect scalability |
-| `Cost` | ✅ | In the future to handle big amount of data MongoDB could be a cost (not for the initial setup) |
-| `Security` | ✅ | All data provided by the users will be encrypted. No sensible data are needed |
+| `Cost` | ✅ | Related to the previous table |
+| `Security` | ✅ | All data provided by the users are encrypted. No sensible data needed |
 
-**NOTE**: we will be able to do some measures only when we have the sensors in the hand.
 
 ---
 ## <a id="state"></a>Functionalities implementation state
 Ablativo is made of five different components that need to fully interact with each other. These interactions must be well defined.
-* ⚠️ Work in progress
+
+Glossary:
 * ✅ Completed
+* ⚠️ Work in progress
+* 🔜 For the future
+
 #### Mobile application - Beacon sensor
 | Feature | Status |
 | :---- | :----: |
 | The mobile device must be able to broadcast and accept BLE packets | ✅ (PoC) |
-| The mobile device must be able to read the UUID of the beacon it interacts with | ✅ (PoC) |
+| The mobile device must be able to read the Id of the beacon it interacts with | ✅ (PoC) |
 | If the user moves away, the mobile device must be able to understand that it is no longer near the work of art | ⚠️ |
 
 #### Mobile application - Smartphone sensor
@@ -172,7 +178,7 @@ Ablativo is made of five different components that need to fully interact with e
 | The dashboard must be able to display most voted statues to the museum | ⚠️ |
 | The dashboard must be able to display most liked answers to the museum | ⚠️ |
 
-#### Google Cloud Platform - BackEnd
+#### AWS - BackEnd
 | Feature | Status |
 | :---- | :----: |
 | The BackEnd must be able to establish a connection with google cloud platform | ✅ |
@@ -217,17 +223,17 @@ Activity/Emotion recognition | ✅ | ❌ | ❌ | ❌
 Music Generation | ✅ | ❌ | ❌ | ❌ 
 Chatbot to know specific features | ✅ | ❌ | ❌ | ❌ 
 Mentor | ✅ | ❌ | ❌ | ❌
-Different visit according to user's competence | ✅ | ❌ | ❌ | ❌
-Multiple language visits | ✅ | ✅ | ✅ | ✅
+Different visit according to user's competence | 🔜 | ❌ | ❌ | ❌
+Multiple language visits | 🔜 | ✅ | ✅ | ✅
 Data Analysis for museums | ✅ | ❌ | ✅ | ❌
 Complete description of statues | ❌| ✅ | ✅ | ✅
-Voice messages | ✅ | ❌ | ✅ | ❌
+Voice messages | 🔜 | ❌ | ✅ | ❌
 Audio guide | ❌ | ✅ | ✅ | ✅
 Video guide | ❌ | ❌ | ❌ | ✅
 Augmented Reality | ❌ | ❌ | ❌ | ❌
 3D modeling | ❌ | ❌ | ❌ | ✅
 Possibility of making treasure hunts | ✅ | ❌ | ✅ | ❌
-Available to every museums | ✅ | ❌ | ❌ | ✅
+Available to every museums | 🔜 | ❌ | ❌ | ✅
 
 ---
 ## Previous versions

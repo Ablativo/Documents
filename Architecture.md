@@ -140,7 +140,7 @@ Another possible alternative may be the `NUCLEO-F401RE` STM32 Nucleo board, with
 
 <img src="./img/beacon.png" width="500" />
 
-However, we opted for the first option, given the higher reliability. The drivers for this expansion boards are mostly deprecated, and the documentation advices to avoid them for new design. Moreover, it does not provide a true random generator, damaging the TLS protocol.
+However, we opted for the first option, given the higher reliability. The drivers for this expansion boards are mostly deprecated, and the documentation advices to avoid them for new design. Moreover, it does not provide a true random numbers generator, damaging the TLS protocol.
 
 
 
