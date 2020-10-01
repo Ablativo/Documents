@@ -1,19 +1,19 @@
 # Ablativo Architecture
 This document provides details on the technical aspects of the product, including a high-level presentation of the conceptual architecture and information about the software and hardware components.
 
-The following paragraph describes the execution flow of the product and gives a high-level overview of the overall components. 
+The following paragraph briefly describes the execution flow of the service and gives a high-level overview of the overall components. 
 
-1. The main flow of the mobile application starts with the interaction between the smartphone and the beacon sensors. 
+1. The main flow of the mobile application starts with the interaction between the smartphone and the beacon sensors (one for each room) through the BLE protocol. 
 
-2. When the visitor enters an area covered by a beacon, the mobile device recognizes the id of the sensor and sends it to the back-end. 
+2. When the visitor enters an area covered by a beacon, the mobile device recognizes the id of the sensor and sends it to the back-end deployed on EC2. 
 
-3. The back-end searches in the database for the pair `<id, statue>` and starts sending messages to the user's chat, managed by a bot. It addresses predefined questions and answers. The whole Q&A flow can be represented as a finite-state automaton where from a starter state, we can always arrive at the final state.
+3. The back-end searches in the DynamoDB database for the data of the corresponding room and a bot starts sending messages to the user's chat, addressing predefined questions and answers. The whole Q&A flow can be represented as a finite-state automaton where from a starter state, we can always arrive at the final state.
 
-4. During the visit, both smartphone and embedded devices retrieve the values from some sensors to reconstruct the activity/emotions of the user. 
+4. During the visit, both smartphone and embedded devices retrieve the values from some sensors to reconstruct the activity/emotions of the user. The sensors are managed by IoT core.
 
-6. All the data retrieved by the sensors are collected in the database. At the end of the visit, these are converted into musical notes, then used as input for a Neural Network to generates a melody, sent to the user.
+5. All the data retrieved by the sensors are collected in the database. At the end of the visit, these are converted into musical notes, then used as input for a Neural Network deployed on Sagemaker to generates a melody.
 
-4. At the same time, the dashboard for data analysis shows the curator the environment telemetry values and statics about the number of visitors inside the museum.
+6. At the same time, the dashboard for data analysis shows to the curator the environment telemetries and statics about the number of visitors inside the museum. 
 
 Now we have a general overview, and we can go into the details of the components that make up the leading architecture.
 
@@ -25,7 +25,13 @@ Now we have a general overview, and we can go into the details of the components
 * [Dashboard for data analysis](#dboard)
 * [Amazon web service](#aws)
     * [IoT Core](#iot)
+    * [DynamoDB](#dyno)
     * [EC2 (application back end)](#ec2)
+    * [Cognito](#cognito)
+    * [Amplify](#amply)
+    * [Lambda](#lambda)
+    * [Sagemaker](#sage)
+    * [SNS](#sns)
 * [Sensors](#sensors)
     * [Beacon + Environmental telemetries](#beacon)
     * [Smartphone Sensors](#smartsens)
@@ -42,9 +48,12 @@ It is an open-source application available on our git repository and provided as
 
 ---
 ## <a id="dboard"></a>Dashboard for data analysis
-Management and monitoring module, practically speaking the admin console. In this case, a web application running on every browser. It is implemented with **React** + **Material UI**, for great performances and a pleasant Material Design interface.
-It provides information about the current environmental status of the museum, showing the telemetries collected by the embedded sensors. Moreover, it shows the number of visitor inside the museum using the mobile application, and the number of likes that each artwork receive.
-In future releases, it may include other functionalities for such as a calendar, Q&A fast personalization, and so on.
+Management and monitoring module, practically speaking the admin console. It is implemented as a **React + Material UI** web application so that to have a fully responsive and accessible from everywhere tool, with great performances and a pleasant Material Design interface. It provides information about:
+* The current environmental status of the museum, showing the telemetries collected by the embedded sensors;
+* The number of visitor inside the museum using the mobile application
+* The number of likes that each artwork receive;
+
+In future releases, it may include other functionalities, such as a calendar, Q&A fast personalization, and so on.
 
 
 ---
@@ -55,10 +64,14 @@ Let's see the single compontents used by Ablativo
 
 ### <a id="iot"></a>IoT Core
 AWS IoT Core is a managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices. It can support billions of devices and trillions of messages, and can process and route those messages to AWS endpoints and to other devices reliably and securely.
-It supports HTTP, WebSockets, and MQTT, a lightweight communication protocol specifically designed to tolerate intermittent connections, minimize the code footprint on devices, and reduce network bandwidth requirements.
-With AWS IoT Core, the user can filter, transform, and act upon device data on the fly, based on predefined business rules.
 It provides automated configuration and authentication upon a device’s first connection to AWS IoT Core, as well as end-to-end encryption throughout all points of connection, so that data is never exchanged between devices and AWS IoT Core without proven identity.
 Finally, the latest state of a connected device so that it can be read or set at anytime, making super easy to configure a failure detector.
+
+### <a id="dyno"></a>DynamoDB 
+Amazon DynamoDB is a key-value and document database that delivers single-digit millisecond performance at any scale. It's a fully managed, multiregion, multimaster, durable database with built-in security, backup and restore, and in-memory caching for internet-scale applications.
+DynamoDB supports ACID transactions to enable you to build business-critical applications at scale. DynamoDB encrypts all data by default and provides fine-grained identity and access control on all the tables.
+
+However, given the price, for possible deployment, we may use **Amazon Timestream** for the telemetries (currently not available for educate accounts).
 
 
 ### <a id="ec2"></a>EC2 (application back end)
@@ -66,6 +79,34 @@ Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure,
 Here there is the application Back-end, fully developed on ***Node.js***, an open-source asynchronous event-driven JavaScript runtime designed to build scalable network applications.
 Its intrinsic feature of non-blocking I/O, the fantastic community, and overall performance made Node.js the perfect choice for our application. Indeed a Node.js app is run in a single process without creating a new thread for each request and the provided set of asynchronous I/O primitives prevent JavaScript code from blocking.
 
+
+### <a id="cognito"></a>Cognito
+Amazon Cognito lets add user sign-up, sign-in, and access control to web and mobile apps quickly and easily.
+In our case, it is used only for the curators' authentication in the Dashboard. Moreover, given the fact that only the museum curators can access the web application, the registration form is blocked, and only the admin can add new users from the AWS console.
+
+
+### <a id="amply"></a>Amplify
+AWS Amplify is an end-to-end solution that enables mobile and front-end web developers to build and deploy secure, scalable full-stack applications.
+This framework provides different components that simplify the configuration of various application components.
+In our case:
+- Authentication for user registration & authentication
+- API (GraphQL and REST) to access the database
+- PubSub to manage messaging & subscriptions (sensors)
+
+
+### <a id="lambda"></a>Lambda
+Lambda is an event-driven, serverless computing platform that runs code in response to events and automatically manages the computing resources required by that code.
+In our case it used to collect the telemetries of an user in order to feed the machine learning model.
+
+
+### <a id="sage"></a>Sagemaker
+SageMaker is a fully managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning (ML) models quickly.
+Here we have the music generation.
+
+
+### <a id="sns"></a>SNS
+Amazon Simple Notification Service (SNS) is a fully managed messaging service for both system-to-system and app-to-person (A2P) communication. It enables you to communicate between systems through publish/subscribe (pub/sub) patterns that enable messaging between decoupled microservice applications or to communicate directly to users via SMS, mobile push and email.
+We are using it to send the music to the user mail.
 
 
 ---
@@ -99,7 +140,7 @@ Another possible alternative may be the `NUCLEO-F401RE` STM32 Nucleo board, with
 
 <img src="./img/beacon.png" width="500" />
 
-However, we opted for the first option, given the higher reliability. The drivers for this expansion boards are mostly deprecated, and the documentation advices to avoid them for new design. Moreover, it does not provide entropy generator, damaging the TLS protocol.
+However, we opted for the first option, given the higher reliability. The drivers for this expansion boards are mostly deprecated, and the documentation advices to avoid them for new design. Moreover, it does not provide a true random generator, damaging the TLS protocol.
 
 
 
@@ -119,7 +160,7 @@ To retrieve them we use React Native framework sensors API. These values are nec
 
 
 #### NOTE
-Why not MQTT-SN for the board? It works over UDP, which is an "unreliable" protocol. If a message gets lost, the failure detector can wrongly detect a crash. Thus, since we send messages every 5/10 minutes only, there is no reason to increase the complexity of the system (requiring intermediate broker and transparent gateway), and relax our strong assumptions of prefect links and synchronous system.
+Why not MQTT-SN for the board? It works over UDP, which is an "unreliable" protocol. If a message gets lost, the failure detector can wrongly detect a crash. Thus, since we send messages every 10/15 minutes only, there is no reason to increase the complexity of the system (requiring intermediate broker and transparent gateway), and relax our strong assumptions of prefect links and synchronous system.
 
 
 ---
