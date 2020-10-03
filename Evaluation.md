@@ -11,7 +11,9 @@ We based our evaluation model in the well known **Key Performance Indicators**. 
 
 * [Technical aspects](#tech)
 
-* [Functionalities implementantion state](#state)
+* [Implementantion state](#state)
+
+* [Implementation costs](#costs)
 
 * [Competitors](#comp)
 
@@ -38,44 +40,36 @@ We received more than 100 replies from Italian people, and more than 40 from peo
 3 | Finally, over 80% of these people told us they are thinking to download for real our application on their smartphone.
 
 #### Evaluation metrics
-Now, let's define the parameters we will use for the final evaluation:
-* **Accessibility**: any type of user who knows how to use a chat will be able to use Ablativo.
+Now, let's define the parameters for the final evaluation:
+* **Accessibility**: any type of user who knows how to use a chat must be able to use Ablativo.
 * **Simplicity**: Ablativo must be intuitive. 
-    * The museum visitor can easily sign-in/sign-up and choose his/her mentor
-    * The museum visitor can easily interact with the mentor, which will have as natural as possible human-like behavior
-    * The museum visitor can easily interact with the statutes, which will have as natural as possible human-like behavior
-    * The museum curator can easily understand and see the statistics of the metrics collected by the service
-* **Usability**: The response times of the chat must be rapid, otherwise this may lead the user to not use it
-* **Graphic interface**: The interaction between the mentor and the works of art will seem as natural as possible. The overall interface must be user friendly.
-* **Privacy & Security**: Ablativo doesn't store any type of sensible data, the passwords will be encrypted.
+    * The museum visitor can easily sign-in/sign-up and choose his/her mentor;
+    * The museum visitor can easily interact with the mentor/statue, which must provide an extensive set of questions;
+    * The museum curator can easily understand and see the statistics of the metrics collected by the service;
+* **Usability**: The response times of the chat must be rapid, otherwise this may lead the user to not use the application.
+* **Graphic interface**: The overall interface must be user friendly and pleasant.
+* **Privacy & Security**: Ablativo does not store any sensible data. The passwords are hashed as for standard requirements.
 
 ---
 ## <a id="tech"></a>Technical aspects
 
-Glossary:
+Let's analyse the Technical aspects through the edge components that interface directly with the user. Here the status glossary:
 * ✅ Completed
 * ⚠️ Work in progress
 * 🔜 For the future
 
-### Environmental sensors measurements
-* **Ambient sensors**: Let's assume we have N rooms inside the museum. We will put one STM board per room. The board has `Temperature`, `Humidity`, and `Pressure` sensors. Moreover, is works as a `Beacon`.
-    * *2nd Delivery*: Temperature and Humidity sensors are simulated with a JS script that generates random values and sends them to the cloud and to the backend of the application. We send the values every 5-10 minutes.
-    Beacon will be simulated with a smartphone through the app [Beacon Simulator](https://play.google.com/store/apps/details?id=net.alea.beaconsimulator&hl=en)
+### Sensors measurements overview
+The list of all the sensors we are using in our application.
+* **Ambient sensors**: Let's assume we have N rooms inside the museum, we will put one STM board per room. Each board has `Temperature`, `Humidity`, and `Pressure` sensors. Moreover, it works as a `Beacon`.
 
-    * *3rd Delivery*: The sensors will be real and so the beacon.
+* **Smartphone sensors**: We retrieve the values from the smartphone sensors of every user. These values are real. We are able to collect the values with a frequency of 1Hz (1 message per second), so the values are grouped and sent periodically.
 
-* **Smartphone sensors**: we retrieve the values from the smartphone sensors of every user. These values are real.
-    * *3rd Delivery*: we will be able to collect the values with a frequency of 1Hz (1 message per second). The values will be grouped and sent periodically
+* **Heart Rate sensor**: For the PoC, the values are simulated with a JS script that (with a frequency of 1Hz) generates random values and sends them to the cloud and to the backend of the application.
 
-* **Heart Rate sensor**:
-    * *2nd Delivery*: The values will be simulated with a JS script that with a frequency of 1Hz generates random values and send them to the cloud and to the backend of the application.
-    * *3rd Delivery*: This sensor will be possibly real. To do this we have 2 options: Smartphone Heart Rate sensor or Bend Heart Rate sensor.
 
-**NOTE**: The simulated version of the sensors allow us to check the connection between the BackEnd of the application and the AWS Backend.
+
 
 ### Beacon-Sensors board
-Our analysis is based on some specific metrics: `Accessibility`, `Accuracy`, `Complexity`, `Robustness`, `Cost`, `Scalability`, `Security`. Together with these, depending on the component taken into consideration, there will be some more specific characteristics.
-
 
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
@@ -88,19 +82,19 @@ Our analysis is based on some specific metrics: `Accessibility`, `Accuracy`, `Co
 ##### Metrics evaluation
 | Metrics | Status |Solution/Result |
 | ------------- |:---:| :-----|
-| `Accessibility` | ✅ | Battery-powered that can last up to 2 years, they can be placed on any surface, accessible from the mobile app |
-| `Robustness` | ✅ | Strategic points where to place the sensor. 1 beacon per room instead of 1 beacon per statue
-| `Scalability` | ✅ | Beacons transmit only output signals 
-| `Cost` | ⚠️ | Cost of sensors + Cost of the AWS infrastructure (see [Architecture](./Architecture.md) section for more details) |
-| `Security` | ✅ | Beacons transmit output signals, there is no intrinsic safety risk in the transmission. However, all the transmission are still encrypted and signed |
-| `Failure detection` | ✅ | The AWS IoT Core service gives the ability to check the status of the connect devices and therefore disconnections |
+| `Accessibility` | ✅ | Battery-powered, the board can last up to 2 years. The devices can be placed on any surface accessible from the mobile app. |
+| `Robustness` | ✅ | Strategic points where to place the sensor. We have 1 beacon per room instead of 1 beacon per statue.
+| `Scalability` | ✅ | Beacons transmit only constant output signals, which do not change with the number of devices.
+| `Cost` | ✅ | The cost of the sensors depends on the model but in general is about few euros  |
+| `Security` | ✅ | The beacon transmits only output signals, thus there is no intrinsic safety risk in the transmission. All the interactions with the cloud are encrypted and signed to ensure authenticity. |
+| `Failure detection` | ✅ | The AWS IoT Core service gives the ability to check the status of the connect devices and therefore disconnections. |
 
 
-### Mobile app - Web dashboard
+### Mobile app
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
-* **Accuracy**: average error in calculating the distance from the statues (only for app) .
-* **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate (only for app) .
+* **Accuracy**: average error in calculating the distance from the statues.
+* **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate.
 * **Complexity**: complexity can be attributed to hardware, software needed for the system.
 * **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
 * **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy.
@@ -109,40 +103,85 @@ Our analysis is based on some specific metrics: `Accessibility`, `Accuracy`, `Co
 ##### Metrics evaluation
 | Metrics | Status |Solution/Result |
 | ------------- |:---:| :----- |
-| `Accessibility` | ✅ | Accessible with a simple smartphone - computer |
+| `Accessibility` | ✅ | Accessible with a any smartphone, both IOS and Android|
 | `Accuracy` | ⚠️ | Calculated as the average of the Euclidean distance between the estimated and the real position |
 | `Precision` | ⚠️ | Comparison of the various measurements |
-| `Complexity` | ✅ | Thanks to the React and React native framework the implementation is very simple and fast |
-| `Scalability` | ✅ | Being designed for an internal museum, it will have a number of connected users that will never be too high to affect scalability |
-| `Cost` | ✅ | Related to the previous table |
+| `Complexity` | ✅ | Thanks to the React native framework the implementation is very simple and fast |
+| `Scalability` | ✅ | The AWS cloud infrastructure ensures there is always enough computing power |
+| `Cost` | ✅ | Some fees may be applied by the App stores |
 | `Security` | ✅ | All data provided by the users are encrypted. No sensible data needed |
+
+##### Accuracy and Precision in details
+//TODO
+
+
+
+### Web dashboard
+##### Metrics description
+* **Accessibility**: indicates the ability of the technology to be exploited by the user.
+* **Complexity**: complexity can be attributed to hardware, software needed for the system.
+* **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
+* **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy.
+* **Security**: security means the danger that data sent through the system will be violated or accessed by third parties.
+
+##### Metrics evaluation
+| Metrics | Status |Solution/Result |
+| ------------- |:---:| :----- |
+| `Accessibility` | ✅ | Accessible with a any smartphone, tablet or computer|
+| `Complexity` | ✅ | Thanks to the React framework the implementation is very simple and fast |
+| `Scalability` | ✅ | The AWS cloud infrastructure ensures there is always enough computing power |
+| `Cost` | ✅ | More details on the [AWS Cost](#AWScosts) section |
+| `Security` | ✅ | No sensible data needed. The authentication is provided by Cognito and only previously accepted user can Sign-in |
+
+
+
 
 
 ---
-## <a id="state"></a>Functionalities implementation state
-Ablativo is made of five different components that need to fully interact with each other. These interactions must be well defined.
+## <a id="state"></a> Implementation state
+Ablativo is made by different components that need to fully interact with each other. These interactions must be well defined.
 
 Glossary:
 * ✅ Completed
 * ⚠️ Work in progress
 * 🔜 For the future
 
-#### Mobile application - Beacon sensor
+
+#### STM board - Environmental sensors / BLE 
+| Feature | Status |
+| :---- | :----: |
+| The board must be able to retrieve values from the Temperature sensor | ✅ |
+| The mobile app must be able to retrieve values from the Humidity sensor | ✅ |
+| The mobile app must be able to retrieve values from the Pressure sensor | ✅ |
+| The beacon must be able to broadcast BLE packets | ✅  |
+| The BLE packets must have the correct format to be used by the application | ✅  |
+
+
+#### STM board - AWS
+| Feature | Status |
+| :---- | :----: |
+| The STM board must be able to establish a wifi connection | ✅ |
+| The STM board must be able to enstablish a connection with the IoT core MQTT broker | ✅ |
+| The STM board must be able to send values through an MQTT connection | ✅ |
+
+
+#### Mobile application - Beacon
 | Feature | Status |
 | :---- | :----: |
 | The mobile device must be able to broadcast and accept BLE packets | ✅ (PoC) |
 | The mobile device must be able to read the Id of the beacon it interacts with | ✅ (PoC) |
 | If the user moves away, the mobile device must be able to understand that it is no longer near the work of art | ⚠️ |
 
+
 #### Mobile application - Smartphone sensor
 | Feature | Status |
 | :---- | :----: |
 | The mobile app must be able to retrieve values from the Accelerometer | ⚠️ |
 | The mobile app must be able to retrieve values from the Gyroscope | ⚠️ |
-| The mobile app must be able to retrieve values from the Microphone | ⚠️ |
 | The mobile app must be able to retrieve values from the Ambient Light Sensor | ⚠️ |
 
-#### Mobile-Application - BackEnd
+
+#### Mobile Application - BackEnd
 | Feature | Status |
 | :---- | :----: |
 | The mobile application must be able to send the request to and receive a response from the back-end via HTTP through fetch construct | ✅ |
@@ -158,42 +197,29 @@ Glossary:
 | The mobile application must be able to serve three types of mentor, simple, advanced and english mentor | ⚠️ |
 | The chatbot must be a finite-state automaton | ⚠️ |
 
-#### Database - BackEnd
+
+#### Database - Dashboard / Mobile app BackEnd
 | Feature | Status |
 | :---- | :----: |
-| The backend must be able to interact with the database through a query system, in particular, all the information on the database must be retrieved and eventually updated or deleted. | ✅ |
+| Both dashboard and mobile app must be able to interact with the database through a query system, in particular, all the information needed may be retrieved. | ✅ |
 | The database should be reachable in every moment, in case of a fault the system must be able to control the situation. | ✅ |
 | Eventually sensible data must be encrypted by the backend before the insertion. | ✅ |
-| The interaction between the database and the backend must be able to guarantee backup services and disaster recovery procedures. | ⚠️ |
+| The interaction between the database and the backend must be able to guarantee backup services and disaster recovery procedures. | ✅ |
 | The interaction between the database and the backend must guarantee the consistency of the information stored. | ✅ |
 
-#### Dashboard - BackEnd
-| Feature | Status |
-| :---- | :----: |
-| The dashboard must be able to send a request to and receive a response from the back-end via HTTP | ⚠️ |
-| The dashboard must be able to insert/delete works of arts, interacting with the back-end | ⚠️ |
-| The dashboard must be able to edit works of arts, interacting with the back-end | ⚠️ |
-| The dashboard must be able to edit questions and answers for the works of art, interacting with the back-end | ⚠️ |
-| The dashboard must be able to display most frequently asked question to the museum | ⚠️ |
-| The dashboard must be able to display most voted statues to the museum | ⚠️ |
-| The dashboard must be able to display most liked answers to the museum | ⚠️ |
 
-#### AWS - BackEnd
+#### AWS Virtual Private Cloud (VPC) internals
 | Feature | Status |
 | :---- | :----: |
-| The BackEnd must be able to establish a connection with google cloud platform | ✅ |
-| The BackEnd must be able to describe the topic referred to the sensors failures detection | ✅ |
+| IoT core must be able to forward the telemtries to the DynamoDB database, which stores them | ✅ |
+| The app back-end on EC2 must be able to interact with the DynamoDB database in order to insert, update and delete tuples | ✅ |
+| AWS amplify must be able to retrieve useful data from the DynamoDB database | ✅ |
+| AWS amplify must be able to interact with Cognito so as to ensure the curators authentication | ✅ |
+| AWS amplify must be able to interact with IoT core in order to detect devices failures | 🔜 (PoC) |
+| AWS lambda must be able to retrieve the correct telemetries for a given user | ⚠️ |
+| Sagemaker must be able to make a melody given the notes in input | ⚠️ |
+| SNS must be able to send to user mail the final melody | ⚠️ |
 
-#### Embedded system
-| Feature | Status |
-| :---- | :----: |
-| The STM32 nucleo board must be able to interact with the X-NUCLEO-IDB05A1 expansion board (Bluetooth) | ⚠️ |
-| The STM32 nucleo board must be able to interact with the X-NUCLEO-IDW01M1 expansion board (Wifi) | ✅ |
-| The STM32 nucleo board must be able to interact with the X-NUCLEO-IKS01A2 expansion board (sensors) | ⚠️ |
-| The Nucleo board must be able to establish a wifi connection | ✅ |
-| The Nucleo board must be able to send values through an MQTT connection | ⚠️ |
-| The Nucleo board must be able to broadcast and accept BLE packets | ⚠️ |
-| The Nucleo board must be visible by the mobile devices | ⚠️ |
 
 #### User activity/emotion recognition - Music Generation
 | Feature | Status |
@@ -208,6 +234,13 @@ Glossary:
 | The database must be able to purge data at the end of the visit | ⚠️ |
 
 ***PoC***: means that the functionality is simulated
+
+---
+## <a id="costs"></a>Implementation costs
+
+#### <a id="AWScosts"></a> AWS costs
+
+
 
 ---
 ## <a id="comp"></a>Competitors

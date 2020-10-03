@@ -9,13 +9,13 @@ The following paragraph briefly describes the execution flow of the service and 
 
 3. The back-end searches in the DynamoDB database for the data of the corresponding room and a bot starts sending messages to the user's chat, addressing predefined questions and answers. The whole Q&A flow can be represented as a finite-state automaton where from a starter state, we can always arrive at the final state.
 
-4. During the visit, both smartphone and embedded devices retrieve the values from some sensors to reconstruct the activity/emotions of the user. The sensors are managed by IoT core.
+4. During the visit, both smartphone and embedded devices retrieve values from some sensors and store them into the database to reconstruct the activity/emotions of the user. The sensors are managed by IoT core.
 
-5. All the data retrieved by the sensors are collected in the database. At the end of the visit, these are converted into musical notes, then used as input for a Neural Network deployed on Sagemaker to generates a melody.
+5. At the end of the visit, a Lambda function retrieves all the data connected to the user, that are converted into musical notes, and then used as input for a Neural Network deployed on Sagemaker to generates a melody. Once made, the song is sent to the user email through SNS.
 
-6. At the same time, the dashboard for data analysis shows to the curator the environment telemetries and statics about the number of visitors inside the museum. 
+6. At the same time, the dashboard for data analysis shows to the curator the environment telemetries and statics about the number of visitors inside the museum. The interaction with the cloud services is managed by AWS amplify, and in particular the authentication service by Cognito.
 
-Now we have a general overview, and we can go into the details of the components that make up the leading architecture.
+Now we have a general overview and so we can go into the details of the components that make up the leading architecture.
 
 ![img](./img/architecture.png)
 
@@ -49,9 +49,9 @@ It is an open-source application available on our git repository and provided as
 ---
 ## <a id="dboard"></a>Dashboard for data analysis
 Management and monitoring module, practically speaking the admin console. It is implemented as a **React + Material UI** web application so that to have a fully responsive and accessible from everywhere tool, with great performances and a pleasant Material Design interface. It provides information about:
+* The number of visitors inside the museum using the mobile application;
 * The current environmental status of the museum, showing the telemetries collected by the embedded sensors;
-* The number of visitor inside the museum using the mobile application
-* The number of likes that each artwork receive;
+* The number of likes that each room receive;
 
 In future releases, it may include other functionalities, such as a calendar, Q&A fast personalization, and so on.
 
@@ -87,16 +87,15 @@ In our case, it is used only for the curators' authentication in the Dashboard. 
 
 ### <a id="amply"></a>Amplify
 AWS Amplify is an end-to-end solution that enables mobile and front-end web developers to build and deploy secure, scalable full-stack applications.
-This framework provides different components that simplify the configuration of various application components.
-In our case:
-- Authentication for user registration & authentication
-- API (GraphQL and REST) to access the database
-- PubSub to manage messaging & subscriptions (sensors)
+This framework provides different components that simplify the configuration of various application components. In our case:
+- *Authentication* for user registration & authentication
+- *API (GraphQL and REST)* to access the database
+- *PubSub* to manage messaging & subscriptions (for sensors)
 
 
 ### <a id="lambda"></a>Lambda
 Lambda is an event-driven, serverless computing platform that runs code in response to events and automatically manages the computing resources required by that code.
-In our case it used to collect the telemetries of an user in order to feed the machine learning model.
+We are using it to collect the telemetries of a given user, in order to feed the machine learning model.
 
 
 ### <a id="sage"></a>Sagemaker
@@ -105,9 +104,15 @@ Here we have the music generation.
 
 
 ### <a id="sns"></a>SNS
-Amazon Simple Notification Service (SNS) is a fully managed messaging service for both system-to-system and app-to-person (A2P) communication. It enables you to communicate between systems through publish/subscribe (pub/sub) patterns that enable messaging between decoupled microservice applications or to communicate directly to users via SMS, mobile push and email.
+Amazon Simple Notification Service (SNS) is a fully managed messaging service for both system-to-system and app-to-person (A2P) communication. 
 We are using it to send the music to the user mail.
 
+
+### <a id="why"></a> Why AWS and a full cloud infrastructure?  
+It is scalable, reliable, and gives a secure global computing infrastructure.
+
+The number of museum visitors may change quickly, depending on the day of the week, month, or year. Thus, Auto Scaling and Elastic Load Balancing allow the application to scale up or down based on demand. This approach leads to significant cost reduction for the compute power, storage, and other resources, with no long-term contracts or up-front commitments. 
+Moreover, AWS utilizes an end-to-end approach to secure and harden our infrastructure, including physical, operational, and software measures.
 
 ---
 ## <a id="sensors"></a>Sensors
