@@ -11,7 +11,7 @@ The following paragraph briefly describes the execution flow of the service and 
 
 4. During the visit, both smartphone and embedded devices retrieve values from some sensors and store them into the database to reconstruct the activity/emotions of the user. The sensors are managed by IoT core.
 
-5. At the end of the visit, a Lambda function retrieves all the data connected to the user, that are converted into musical notes, and then used as input for a Neural Network deployed on Sagemaker to generates a melody. Once made, the song is sent to the user email through SNS.
+5. At the end of the visit, all the data connected to the user are converted into musical notes and then used as input for a Neural Network to generates a melody.
 
 6. At the same time, the dashboard for data analysis shows to the curator the environment telemetries and statics about the number of visitors inside the museum. The interaction with the cloud services is managed by AWS amplify, and in particular the authentication service by Cognito.
 
@@ -22,16 +22,13 @@ Now we have a general overview and so we can go into the details of the componen
 ---
 ### Table of contents
 * [Mobile application for visitors](#app)
-* [Dashboard for data analysis](#dboard)
+* [Data analytics dashboard for the curator](#dboard)
 * [Amazon web service](#aws)
     * [IoT Core](#iot)
     * [DynamoDB](#dyno)
     * [EC2 (application back end)](#ec2)
     * [Cognito](#cognito)
     * [Amplify](#amply)
-    * [Lambda](#lambda)
-    * [Sagemaker](#sage)
-    * [SNS](#sns)
 * [Sensors](#sensors)
     * [Beacon + Environmental telemetries](#beacon)
     * [Smartphone Sensors](#smartsens)
@@ -44,14 +41,14 @@ Now we have a general overview and so we can go into the details of the componen
 ---
 ## <a id="app"></a>Mobile application for visitors
 
-It is an open-source application available on our git repository and provided as apk. We are talking about a hybrid app developed on ***React Native***, a cross-platform mobile development framework that allows programmers to create apps for both iOS and Android in one simple language, JavaScript. Indeed React Native runs on React, an open-source library for building UI with JavaScript, this framework through a set of components builds a mobile application with a native look and feel. Due to the pretty simple learning curve and well-balanced performance React Native it’s the perfect compromise for our application.
+It is an open-source application available on our git repository and provided as apk. We are talking about a hybrid app developed on **React Native**, a cross-platform mobile development framework that allows programmers to create apps for both iOS and Android in one simple language, JavaScript. Indeed React Native runs on React, an open-source library for building UI with JavaScript, this framework through a set of components builds a mobile application with a native look and feel. Due to the pretty simple learning curve and well-balanced performance React Native it’s the perfect compromise for our application.
 
 ---
-## <a id="dboard"></a>Dashboard for data analysis
+## <a id="dboard"></a>Data analytics dashboard for the curator
 Management and monitoring module, practically speaking the admin console. It is implemented as a **React + Material UI** web application so that to have a fully responsive and accessible from everywhere tool, with great performances and a pleasant Material Design interface. It provides information about:
 * The number of visitors inside the museum using the mobile application;
 * The current environmental status of the museum, showing the telemetries collected by the embedded sensors;
-* The number of likes that each room receive;
+* Details about the current status of each room and artwork;
 
 In future releases, it may include other functionalities, such as a calendar, Q&A fast personalization, and so on.
 
@@ -74,7 +71,7 @@ DynamoDB supports ACID transactions to enable you to build business-critical app
 However, given the price, for possible deployment, we may use **Amazon Timestream** for the telemetries (currently not available for educate accounts).
 
 
-### <a id="ec2"></a>EC2 (application back end)
+### <a id="ec2"></a>EC2 
 Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers.
 Here there is the application Back-end, fully developed on ***Node.js***, an open-source asynchronous event-driven JavaScript runtime designed to build scalable network applications.
 Its intrinsic feature of non-blocking I/O, the fantastic community, and overall performance made Node.js the perfect choice for our application. Indeed a Node.js app is run in a single process without creating a new thread for each request and the provided set of asynchronous I/O primitives prevent JavaScript code from blocking.
@@ -89,23 +86,9 @@ In our case, it is used only for the curators' authentication in the Dashboard. 
 AWS Amplify is an end-to-end solution that enables mobile and front-end web developers to build and deploy secure, scalable full-stack applications.
 This framework provides different components that simplify the configuration of various application components. In our case:
 - *Authentication* for user registration & authentication
-- *API (GraphQL and REST)* to access the database
 - *PubSub* to manage messaging & subscriptions (for sensors)
 
-
-### <a id="lambda"></a>Lambda
-Lambda is an event-driven, serverless computing platform that runs code in response to events and automatically manages the computing resources required by that code.
-We are using it to collect the telemetries of a given user, in order to feed the machine learning model.
-
-
-### <a id="sage"></a>Sagemaker
-SageMaker is a fully managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning (ML) models quickly.
-Here we have the music generation.
-
-
-### <a id="sns"></a>SNS
-Amazon Simple Notification Service (SNS) is a fully managed messaging service for both system-to-system and app-to-person (A2P) communication. 
-We are using it to send the music to the user mail.
+To access the database, we may use *API (GraphQL or REST)*. However, the educate account does not allow us to use GraphQL. Therefore, we decided to implement the APIs on the EC2 back-end (the REST version implies Lamba functions that are just more expensive for this simple task).
 
 
 ### <a id="why"></a> Why AWS and a full cloud infrastructure?  
@@ -154,7 +137,6 @@ However, we opted for the first option, given the higher reliability. The driver
 We will periodically retrieve values from 4 smartphone sensors:
 * `Accelerometer` 
 * `Gyroscope`
-* `Ambient Light Sensor`
 
 
 To retrieve them we use React Native framework sensors API. These values are necessary to detect the user actions, and therefore to generate the final melody.
@@ -174,9 +156,9 @@ In this part we deal with the technical aspects we have in mind to create a pers
 
 #### Data Collection
 The first thing to do is to extract the values from the sensors. We decided to use:
-* ***4 ambient sensors***: `Temperature`, `Humidity` and `Pressure` with STM board, and `Ambient Light Sensor` with the smartphones of the users. These aren't personal values but they affect the emotional condition of the users.
+* ***3 ambient sensors***: `Temperature`, `Humidity` and `Pressure` with STM board, with the smartphones of the users. These aren't personal values but they affect the emotional condition of the users.
 * ***3 personal sensors***: `Accelerometer`, `Gyroscope`, `Heart Rate Sensor`. These values are different for every user because they depend on the activity they are doing.
-* ***Interaction with application***: `Most frequently asked questions`, `Time spent with the statue with which he interacted most`, `Total application usage time`. These are three main measure that helps us to understand how the user interacts with the statues. 
+
 
 We based our analisys on these papers: 
 * [Emotion Detection Using Noninvasive Low Cost Sensors](https://arxiv.org/pdf/1708.06664.pdf)

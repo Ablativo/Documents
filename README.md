@@ -21,7 +21,6 @@ However, here comes our application, Ablativo, intending to bring also those lea
 
 * **[2nd-Delivery](./2nd_delivery.md)**: This documents shows why and how we have changed our application from the first delivery;
 
-* **[StartCup-Lazio partecipazione](./pdf/Scheda-partecipazione-Bando-Start-Cup-2020.pdf)**: Partecipation module for StartCup Lazio (in Italian);
 
 
 ## Video presentations
@@ -44,6 +43,4 @@ We are three computer engineers and students of the MSc in engineering in comput
 
 ## Collaborators
 * ##### [Elisa L'Angiocola](http://linkedin.com/in/elisa-l-angiocola-57a69353)  (Design advisor)
-* ##### [Lorenzo Urzia](http://linkedin.com/in/lorenzo-urzia-775203167) (logo creator)
-* ##### [Aurora Ceccarelli](), [Mariana De Luca](), [Angelica Tirocchi](), [Silvia Utensili](), [Federica Orlandi](), [Emanuele Palaia](), [Nicola Palaia](), [Adalberto Cucci](), [Riccardo Rispoli]() (Business management)
 

@@ -216,8 +216,6 @@ Glossary:
 | AWS amplify must be able to retrieve useful data from the DynamoDB database | ✅ |
 | AWS amplify must be able to interact with Cognito so as to ensure the curators authentication | ✅ |
 | AWS amplify must be able to interact with IoT core in order to detect devices failures | 🔜 (PoC) |
-| AWS lambda must be able to retrieve the correct telemetries for a given user | ⚠️ |
-| Sagemaker must be able to make a melody given the notes in input | ⚠️ |
 | SNS must be able to send to user mail the final melody | ⚠️ |
 
 
