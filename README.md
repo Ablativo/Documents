@@ -2,7 +2,6 @@
   <img src="https://raw.githubusercontent.com/Ablativo/ablativo/master/img/logo.png">
 </p>
 
-# Ablativo
 Museums, the house of muses, some people love them, but for some, it is no more than a boring collection of lifeless things.
 However, here comes our application, Ablativo, intending to bring also those least interested people to the wonderful world of museums.
 

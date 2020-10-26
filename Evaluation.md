@@ -178,7 +178,7 @@ Glossary:
 | :---- | :----: |
 | The mobile app must be able to retrieve values from the Accelerometer | ⚠️ |
 | The mobile app must be able to retrieve values from the Gyroscope | ⚠️ |
-| The mobile app must be able to retrieve values from the Ambient Light Sensor | ⚠️ |
+
 
 
 #### Mobile Application - BackEnd
@@ -216,20 +216,16 @@ Glossary:
 | AWS amplify must be able to retrieve useful data from the DynamoDB database | ✅ |
 | AWS amplify must be able to interact with Cognito so as to ensure the curators authentication | ✅ |
 | AWS amplify must be able to interact with IoT core in order to detect devices failures | 🔜 (PoC) |
-| SNS must be able to send to user mail the final melody | ⚠️ |
 
 
-#### User activity/emotion recognition - Music Generation
+#### User activity recognition - Music Generation
 | Feature | Status |
 | :---- | :----: |
-| The database must be able to collect data from the sensor associated with the user | ⚠️ |
-| The system must be able to collect the most frequently asked questions | ⚠️ |
-| The system must be able to collect the total application usage time | ⚠️ |
-| The system must be able to collect the time spent with the statue the user interacted most | ⚠️ |
-| The system must be able to convert the scientific data to musical notes | ⚠️ |
-| The BackEnd must be able to send the data to the Neural Network uploaded on GCP | ⚠️ |
-| Based on the musical notes, the Neural Network must be able to generate a melody | ⚠️ |
-| The database must be able to purge data at the end of the visit | ⚠️ |
+| The database must be able to collect data from the sensor associated with the user | ✅ |
+| The system must be able to convert the scientific data to musical notes | ✅ |
+| The BackEnd must be able to send the data to MusicRNN | ✅ |
+| Based on the musical notes, the Neural Network must be able to generate a melody | ✅ |
+| The database must be able to purge data at the end of the visit | ⚠️ | 
 
 ***PoC***: means that the functionality is simulated
 

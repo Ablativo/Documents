@@ -151,35 +151,28 @@ Why not MQTT-SN for the board? It works over UDP, which is an "unreliable" proto
 
 
 ---
-## <a id="uaer"></a>User Activity/Emotion recognition
+## <a id="uaer"></a>User Activity recognition
 In this part we deal with the technical aspects we have in mind to create a personalized melody for the user.
 
 #### Data Collection
 The first thing to do is to extract the values from the sensors. We decided to use:
-* ***3 ambient sensors***: `Temperature`, `Humidity` and `Pressure` with STM board, with the smartphones of the users. These aren't personal values but they affect the emotional condition of the users.
-* ***3 personal sensors***: `Accelerometer`, `Gyroscope`, `Heart Rate Sensor`. These values are different for every user because they depend on the activity they are doing.
-
-
-We based our analisys on these papers: 
-* [Emotion Detection Using Noninvasive Low Cost Sensors](https://arxiv.org/pdf/1708.06664.pdf)
-* [*MoodExplorer: Towards Compound Emotion Detection via Smartphone Sensing*](https://dl.acm.org/doi/pdf/10.1145/3161414?download=true)
-* [*Emotion recognition using mobile phones*](https://www.researchgate.net/publication/317123457_Emotion_recognition_using_mobile_phones)
+* ***3 ambient sensors***: `Temperature`, `Humidity` and `Pressure` with STM board. These aren't personal values but they affect the emotional condition of the users.
+* ***3 personal sensors***: `Accelerometer`, `Gyroscope`, `Heart Rate Sensor`. These values are different for every user because they depend on the activity they are doing. 
 
 #### Convert data into musical notes
-To convert data in music notes we will try to use python Music Algorithms:
+To convert data in music notes we use:
 
-* [*Convert Scientific Data into Synthesized Music*](https://makezine.com/projects/synthesized-music-data/)
+* [*NoteSequence*](https://github.com/magenta/note-seq): representation of the musical notes
 
-* [*Numbered musical notation*](https://en.wikipedia.org/wiki/Numbered_musical_notation)
+* [*MidiWriterJS*](https://www.npmjs.com/package/midi-writer-js) JavaScript library providing an API for generating expressive multi-track MIDI files.
 
 ---
 ## <a id="rnn"></a>Music generation
-In the world of machine learning there are many ways to generate music. These options are the most likely for our purposes:
+In the world of machine learning there are many ways to generate music. For our purposes we choose these technologies:
 
-* [*Magenta*](https://hello-magenta.glitch.me)
-* [*Neural Nets for Generating Music*](https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0)
-* [*How to Generate Music using an LSTM Neural Network in Keras*](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5)
-* [*Music Generation Using Deep Learning*](https://medium.com/datadriveninvestor/music-generation-using-deep-learning-85010fb982e2)
+* [*Magenta*](https://hello-magenta.glitch.me): Magenta.js is an open source JavaScript API for using the pre-trained Magenta models in the browser. It is built with TensorFlow.js, which allows for fast, GPU-accelerated inference.
+
+* [*MusicRNN*](): you give it a NoteSequence, and it continues it in the style of your original NoteSequence. There are different models to use, we choose: [*MelodyRNN*](https://github.com/magenta/magenta/tree/master/magenta/models/melody_rnn) with the `mono_rnn` model. This configuration acts as a baseline for melody generation with an [LSTM model](https://colah.github.io/posts/2015-08-Understanding-LSTMs/). It uses basic one-hot encoding to represent extracted melodies as input to the LSTM. While `basic_rnn` is trained by transposing all inputs to a narrow range, `mono_rnn` is able to use the full 128 MIDI pitches.
 
 ---
 ## <a id="prev"></a>Previous versions
