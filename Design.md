@@ -72,3 +72,5 @@ Maryen and Federico, instead, represent our second target, international student
 ## Previous versions
 
 * [Design - delivery 1](https://github.com/Ablativo/ablativo/blob/1st-delivery/Design.md)
+
+* [Design - delivery 2](https://github.com/Ablativo/ablativo/blob/2nd-delivery/Design.md)

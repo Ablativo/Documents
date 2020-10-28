@@ -20,6 +20,8 @@ However, here comes our application, Ablativo, intending to bring also those lea
 
 * **[2nd-Delivery](./2nd_delivery.md)**: This documents shows why and how we have changed our application from the first delivery;
 
+* **[3rd-Delivery](./3rd_delivery.md)**: This documents shows why and how we have changed our application from the second delivery;
+
 
 
 ## Video presentations
@@ -32,6 +34,10 @@ However, here comes our application, Ablativo, intending to bring also those lea
 * ##### [Presentation from a technical point of view](https://youtu.be/0feroPLvXQs)
 * ##### [Presentation of the evaluation plan](https://youtu.be/-5nHsma9eOs)
 * ##### [Presentation of the future plan and evaluation](https://youtu.be/FWWQo9qq54A)
+
+#### 3rd Delivery
+* ##### [Presentation of the project]() (TODO)
+* ##### [Demonstration of the project]() (TODO)
 ---
 ## Authors
 We are three computer engineers and students of the MSc in engineering in computer science at "La Sapienza" University of Rome, this project has been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles

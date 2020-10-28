@@ -33,7 +33,7 @@ Now we have a general overview and so we can go into the details of the componen
     * [Beacon + Environmental telemetries](#beacon)
     * [Smartphone Sensors](#smartsens)
     * [Simulated Heart rate](#simsens)
-* [User Activity/Emotion recognition](#uaer)
+* [User Activity recognition](#uaer)
 * [Music generation](#rnn)
 * [Previous versions](#prev)
 
@@ -134,7 +134,7 @@ However, we opted for the first option, given the higher reliability. The driver
 
 
 ### <a id="smartsens"></a>Smartphone Sensors
-We will periodically retrieve values from 4 smartphone sensors:
+We will periodically retrieve values from 2 smartphone sensors:
 * `Accelerometer` 
 * `Gyroscope`
 
@@ -178,3 +178,5 @@ In the world of machine learning there are many ways to generate music. For our 
 ## <a id="prev"></a>Previous versions
 
 * [Architecture - delivery 1](https://github.com/Ablativo/ablativo/blob/1st-delivery/Architecture.md)
+
+* [Architecture - delivery 2](https://github.com/Ablativo/ablativo/blob/2nd-delivery/Architecture.md)

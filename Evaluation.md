@@ -176,8 +176,8 @@ Glossary:
 #### Mobile application - Smartphone sensor
 | Feature | Status |
 | :---- | :----: |
-| The mobile app must be able to retrieve values from the Accelerometer | ⚠️ |
-| The mobile app must be able to retrieve values from the Gyroscope | ⚠️ |
+| The mobile app must be able to retrieve values from the Accelerometer | ✅ |
+| The mobile app must be able to retrieve values from the Gyroscope | ✅ | 
 
 
 
@@ -186,16 +186,14 @@ Glossary:
 | :---- | :----: |
 | The mobile application must be able to send the request to and receive a response from the back-end via HTTP through fetch construct | ✅ |
 | The mobile application must be able to interact with the backend to establish a dialog between the user and the mentor/statue, receiving and sending messages | ✅ |
-| The mobile application must be able to switch the context of the questions/answers according to the mentor choice | ⚠️ |
-| The interaction between the mobile application and the backend must be safe and guarantee the privacy of the user | ⚠️ |
+| The interaction between the mobile application and the backend must be safe and guarantee the privacy of the user | ✅ |
 | The interaction between the mobile application and the backend must guarantee predictable behavior in case of failures or critical situations | ✅ |
-| The interaction between the mobile application and the backend must guarantee correct behavior in case of unexpected input or situation | ⚠️ |
-| The mobile application must be able to guarantee the login on the application | ⚠️ |
+| The interaction between the mobile application and the backend must guarantee correct behavior in case of unexpected input or situation | ✅ |
+| The mobile application must be able to guarantee the login on the application | ✅ |
 | The interaction between the mobile application and the backend must be flexible so that fixes, upgrade and new development can be easily implemented | ✅ |
-| The user should be able to choose and change the mentor, so the application must be able to communicate that operation to the backend | ⚠️ |
-| The mobile application must be able to interact with the user with a chatbot | ⚠️ |
-| The mobile application must be able to serve three types of mentor, simple, advanced and english mentor | ⚠️ |
-| The chatbot must be a finite-state automaton | ⚠️ |
+| The user should be able to choose and change the mentor, so the application must be able to communicate that operation to the backend | ✅ |
+| The mobile application must be able to interact with the user with a chatbot | ✅ |
+| The chatbot must be a finite-state automaton | ✅ |
 
 
 #### Database - Dashboard / Mobile app BackEnd
@@ -225,7 +223,6 @@ Glossary:
 | The system must be able to convert the scientific data to musical notes | ✅ |
 | The BackEnd must be able to send the data to MusicRNN | ✅ |
 | Based on the musical notes, the Neural Network must be able to generate a melody | ✅ |
-| The database must be able to purge data at the end of the visit | ⚠️ | 
 
 ***PoC***: means that the functionality is simulated
 
@@ -233,8 +230,6 @@ Glossary:
 ## <a id="costs"></a>Implementation costs
 
 #### <a id="AWScosts"></a> AWS costs
-
-
 
 ---
 ## <a id="comp"></a>Competitors
@@ -266,3 +261,5 @@ Available to every museums | 🔜 | ❌ | ❌ | ✅
 ## Previous versions
 
 * [Evaluation - delivery 1](https://github.com/Ablativo/ablativo/blob/1st-delivery/Evaluation.md)
+
+* [Evaluation - delivery 2](https://github.com/Ablativo/ablativo/blob/2nd-delivery/Evaluation.md)
