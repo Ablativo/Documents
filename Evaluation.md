@@ -206,6 +206,14 @@ Glossary:
 | The interaction between the database and the backend must guarantee the consistency of the information stored. | ✅ |
 
 
+#### Dashboard functionalities
+| Feature | Status |
+| :---- | :----: |
+| Number of visitors inside the museum using the mobile applicatio | ✅ | 
+| The current environmental status of the museum, a.k.a the telemetries collected by the embedded sensors | ✅ |
+| Details about the current status of each room and artwork | ✅ |
+
+
 #### AWS Virtual Private Cloud (VPC) internals
 | Feature | Status |
 | :---- | :----: |
