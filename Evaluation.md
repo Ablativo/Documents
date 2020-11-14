@@ -73,6 +73,8 @@ The list of all the sensors we are using in our application.
 
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
+* **Accuracy**: average error in calculating the distance from the statues.
+* **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate.
 * **Robustness**: the system's ability to resist interference and noise from nearby sensors
 * **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
 * **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy. The time factor is linked to installation and maintenance times.
@@ -82,19 +84,40 @@ The list of all the sensors we are using in our application.
 ##### Metrics evaluation
 | Metrics | Status |Solution/Result |
 | ------------- |:---:| :-----|
-| `Accessibility` | ✅ | Battery-powered, the board can last up to 2 years. The devices can be placed on any surface accessible from the mobile app. |
-| `Robustness` | ✅ | Strategic points where to place the sensor. We have 1 beacon per room instead of 1 beacon per statue.
+| `Accessibility` | ✅ | Battery-powered, the board can usually last up to 2 years. The devices can be placed on any surface accessible from the mobile app. |
+| `Accuracy` | 🔜 | Calculated as the average of the Euclidean distance between the estimated and the real position |
+| `Precision` | 🔜 | Comparison of the various measurements |
+| `Robustness` | ✅ | Strategic points where to place the sensor. We have (in general) 1 beacon per room instead of 1 beacon per statue. May be more for larger rooms.
 | `Scalability` | ✅ | Beacons transmit only constant output signals, which do not change with the number of devices.
 | `Cost` | ✅ | The cost of the sensors depends on the model but in general is about few euros  |
 | `Security` | ✅ | The beacon transmits only output signals, thus there is no intrinsic safety risk in the transmission. All the interactions with the cloud are encrypted and signed to ensure authenticity. |
 | `Failure detection` | ✅ | The AWS IoT Core service gives the ability to check the status of the connect devices and therefore disconnections. |
 
 
+##### Accuracy and Precision in details
+A correct statistical analysis would require the final production board and the opportunity to make tests inside a real museum, which is now impossible due to the COVID situation. However, we can start by making some assumptions and defining some directives. 
+
+Let's take, for eaxmple, the iBeacon definition, which categorize the "beacon - mobile device" into 3 distinct ranges:
+- Immediate: Within a few centimeters
+- Near: Within a couple of meters 
+- Far: Greater than 10 meters away
+
+If we assume that each room is a few meters large and the "near" category, we have the following situation
+
+<div align="center"><img src="./img/beacon_m.png" width="600" /></div>
+
+Each room has at least one beacon in the centre or more in case of larger rooms. For the correct behaviour of the service, we must ensure that each room is covered for most of its surface, avoiding at the same time interferences with the other rooms. Thus, the visitor may be in 3 possible situations:
+1. The visitor is inside the optimal range, and there are no interferences from other devices: no problems for the correct behaviour of the service;
+2. The visitor is inside the range of two different beacons: he/she may receive messages from the artworks of both. This is not a problem if they are both inside the same room, but may be annoying in case of different rooms.
+3. The visitor is outside the range of any beacon: he/she will not receive any message even if still inside the museum.
+
+In case the beacon range goes over the required scope, we may adjust it by covering the beacon with some shielding material. However, there will always be some interferences or uncovered surfaces. Thus, our goal is to find a good trade-off.
+
+
+
 ### Mobile app
 ##### Metrics description
 * **Accessibility**: indicates the ability of the technology to be exploited by the user.
-* **Accuracy**: average error in calculating the distance from the statues.
-* **Precision**: how the system works overtime, how similar the various measurements are to each other, which does not necessarily mean that the system is accurate.
 * **Complexity**: complexity can be attributed to hardware, software needed for the system.
 * **Scalability**: the scalability of a system ensures its normal operation even when the sphere of the application becomes larger.
 * **Cost**: the cost of a system like this can depend on several factors. The most important ones include money, time, space, weight, and energy.
@@ -104,15 +127,10 @@ The list of all the sensors we are using in our application.
 | Metrics | Status |Solution/Result |
 | ------------- |:---:| :----- |
 | `Accessibility` | ✅ | Accessible with a any smartphone, both IOS and Android|
-| `Accuracy` | ⚠️ | Calculated as the average of the Euclidean distance between the estimated and the real position |
-| `Precision` | ⚠️ | Comparison of the various measurements |
 | `Complexity` | ✅ | Thanks to the React native framework the implementation is very simple and fast |
 | `Scalability` | ✅ | The AWS cloud infrastructure ensures there is always enough computing power |
 | `Cost` | ✅ | Some fees may be applied by the App stores |
 | `Security` | ✅ | All data provided by the users are encrypted. No sensible data needed |
-
-##### Accuracy and Precision in details
-//TODO
 
 
 

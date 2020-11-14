@@ -20,12 +20,12 @@
 
 * **ARCHITECTURE**:
 
- 1. Switched from Google Cloud Platform to `AWS` services due to the fact that our board is not able to interact with GCP.
+ 1. Switched from Google Cloud Platform to `AWS` services given some troubles in the interaction with the new board, and to try a new platform.
  2. Added decription of AWS services used: `IoT Core`, `DynamoDB`, `EC2`, `Cognito`, `Amplify`
  3. Switched from MongoDB to DynamoDB to comply with the cloud infrastructure of AWS.
  4. Switched from Heroku to EC2 to comply with the cloud infrastructure of AWS.
  5. Choosed the `B-L475E-IOT01` board, given the higher reliability (More details on this choice are explained in the Architecture document)
- 6. Removed `Ambient light sensor` because React is not able to interact with it very well
+ 6. Removed `Ambient light sensor` because React native does not interact with it very well
  7. Added description of the music generation with `Magenta` and `MusicRNN`
 
 [Architecture document](./Architecture.md)
@@ -45,11 +45,10 @@
 * **3rd Delivery**: we switched all the infrastructure from Google Cloud Platform to Amazon Web Service, then we focused our development on the features specified in the previous delivery: 
   - Dashboard for curators
   - Mentor logic
-  - real hardware sensors implementation
-  - smartphone sensors
-  - finite-state automaton to transform the chat in a chatbot
-  - retrieve information about user activity
-  - convert these data into musical notes and finally generate the melody with a Recurrent Neural Network
+  - Real hardware sensors implementation
+  - Smartphone sensors
+  - Finite-state automaton to transform the chat in a chatbot
+  - Retrieve information about user activity and convert these data into musical notes to finally generate the melody with a Recurrent Neural Network
 
 * **Future work**: 
   - Chatbot implemented with an artificial intelligence, such as [Amazon Lex](https://aws.amazon.com/it/lex/)
