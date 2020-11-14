@@ -3,15 +3,15 @@ This document provides details on the technical aspects of the product, includin
 
 The following paragraph briefly describes the execution flow of the service and gives a high-level overview of the overall components. 
 
-1. The main flow of the mobile application starts with the interaction between the smartphone and the beacon sensors (one for each room) through the BLE protocol. 
+1. The main flow of the mobile application starts with the interaction between the smartphone and the beacon sensors (one for each room) through the BLE protocol.
 
-2. When the visitor enters an area covered by a beacon, the mobile device recognizes the id of the sensor and sends it to the back-end deployed on EC2. 
+2. When the visitor enters an area covered by a beacon, the mobile device recognizes the id of the sensor and sends it to the back-end deployed on EC2.
 
-3. The back-end searches in the DynamoDB database for the data of the corresponding room and a bot starts sending messages to the user's chat, addressing predefined questions and answers. The whole Q&A flow can be represented as a finite-state automaton where from a starter state, we can always arrive at the final state.
+3. The back-end searches in the Dynamodb database for the data of the corresponding room and a bot starts sending messages to the user's chat, addressing predefined questions and answers. The whole Q&A flow can be represented as a finite-state automaton where from a starter state, we can always arrive at the final state.
 
-4. During the visit, both smartphone and embedded devices retrieve values from some sensors and store them into the database to reconstruct the activity/emotions of the user. The sensors are managed by IoT core.
+4. During the visit, both smartphone and embedded devices retrieve values from some sensors. The environmental telemetries are stored inside the database, while the personal visitor telemetries are stored only inside the smartphone, for privacy reasons (and reducing the service final cost). The sensors are managed by Iot-core.
 
-5. At the end of the visit, all the data connected to the user are converted into musical notes and then used as input for a Neural Network to generates a melody.
+5. At the end of the visit, all the data connected to the visitor are used to reconstruct his/her activity/emotions and so converted into musical notes, then used as input for a Neural Network to generates a melody.
 
 6. At the same time, the dashboard for data analysis shows to the curator the environment telemetries and statics about the number of visitors inside the museum. The interaction with the cloud services is managed by AWS amplify, and in particular the authentication service by Cognito.
 

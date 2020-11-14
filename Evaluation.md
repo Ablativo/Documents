@@ -42,7 +42,7 @@ We received more than 100 replies from Italian people, and more than 40 from peo
 #### Evaluation metrics
 Now, let's define the parameters for the final evaluation:
 * **Accessibility**: any type of user who knows how to use a chat must be able to use Ablativo.
-* **Simplicity**: Ablativo must be intuitive. 
+* **Simplicity**: Ablativo must be intuitive:
     * The museum visitor can easily sign-in/sign-up and choose his/her mentor;
     * The museum visitor can easily interact with the mentor/statue, which must provide an extensive set of questions;
     * The museum curator can easily understand and see the statistics of the metrics collected by the service;
