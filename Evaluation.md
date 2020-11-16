@@ -256,7 +256,14 @@ Glossary:
 ## <a id="costs"></a>Implementation costs
 
 #### <a id="AWScosts"></a> AWS costs
-
+Assumed location Europe(Milan)
+| Service| Assumptions|Monthly price |
+| :---- | :---- |:---- |
+| <b>DynamoDB |<ul><li> When you select on-demand capacity mode for DynamoDB table, you pay only for the reads and writes yout application performs<ui><br><br>$1.48 per million writing requests (WCU)<br>$1.48 per million reading requests (RCU)<br><br><li>Suppose that a regular user consumes 70 WCU and 70 RCU at day<br>A single user will costs $0.0002/day<br>Our application will handle an average of 10 user/day  |$0.06
+| <b>Amplify | <ul><li>Free Tier<br>1000 build minutes per month<br>5 GB stored per month<br>15 GB served per month<li>Pay as you go<br>$0.01 per build minutes<br>$0.023 per GB stored/month<br>$0.15 per GB served<li>Only dashboard user involved |$0.00
+| <b>Cognito |<ul><li>First 50000 free<br>$0.0055 per MAU (monthly active users) (50,001-100,000...)<li>Dashboard users only |$0.00
+| <b>EC2|<ul><li>Estimated through AWS pricing calculator choosing on Demand Strategy<br>Instances:  1<br>Storage: 10 GB SSD<br>Memory: 4 GiB<br>vCPUs: 2<br>OS: Linux |$34.97 on Demand instances<br> $1.16 EBS pricing|
+| <b>IoT Core | <ul><li>Connectivity:<br>$0,096 per million minutes of connection<br><li>Messaging:<br>Up to 1 billion messages: $1.20 (per million messages)<br>Next 4 billion messages: $0.96 (per million messages)<br>Over 5 billion messages: $0.84 (per million messages)<br>We sends 6 messages per hour so a total of 4320/month x device<br>$0.005/month x device<br><li>Rules Engine:<br>As mentioned before we use 4320/month messages x device<ul><li>Rules triggered: $0.18 (per million rules triggered / per million actions executed)<li>Actions executed: $0.18 (per million rules triggered / per million actions executed)</ul>$0.0007/month x device</ul> | $0.1
 ---
 ## <a id="comp"></a>Competitors
 In this table, we try to compare Ablativo with some of the applications already present in the world. In particular as competitors we have chosen:
