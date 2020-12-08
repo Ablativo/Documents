@@ -29,12 +29,17 @@ While the user visits the museum, the mobile application will collect data about
 
 
 #### BENEFITS
-- USERS: Interacting with the application, the users receive targeted information on the pieces of art they are interested in. 
-Therefore, they are not forced to read the entire description, but only ask for the things that interest them. 
+- USERS:
+	* Visits will no longer be boring thanks to the active interaction with the artworks
+	* Are not forced to read the entire description, but only ask for the things that interest them
+	* Experienced and less experienced users can take advantage of targeted visits
+	* Review the questions asked, and have a memory of their visit in the form of music
 
-
-- MUSEUM: The application can collect information on the most frequently asked questions posed to statues, including which are most in-demand. 
-	Then, these data could also help in advertising marketing strategies by analyzing visitors' interests more closely.
+- MUSEUM:
+	* Failure detection of the embedded devices inside the museums
+	* The current environmental status of the museum, showing the telemetries collected by the embedded sensors;
+	* The number of visitor inside the museum using the mobile application;
+	* The number of likes that each artwork receive;
 
 EXTRA: Once collected enough data, analyzing the interactions, the app could be extended to a real path inside the museum, guided by the statues. A real "treasure hunt" with the suggestions of the artworks.
 
