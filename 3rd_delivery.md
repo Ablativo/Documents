@@ -52,7 +52,6 @@
 
 * **Future work**: 
   - Chatbot implemented with an artificial intelligence, such as [Amazon Lex](https://aws.amazon.com/it/lex/)
-  - Different visit according to user's competence and language
   - Q&A with vocal messages 
   - Collect data referring to most frequently asked questions
   - Generate the music based not only on the activity but also with the emotion of users (User emotion recognition)
