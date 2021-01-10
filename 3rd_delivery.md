@@ -60,6 +60,8 @@ Detailed information about the functionalities implementantion state are availab
 
 ### Evaluation (//TODO)
 * **3rd Delivery**: 
+To overcome the difficulties raised by the Covid-19 situation, the lack of a production board and the struggles to make experiment inside a real environment we have tried to imagine and analyze some of the possible scenarios.
+This needs led us to focus on the precision and accuracy of the beacon related to the position of the user.
 * **Future work**:
 
 Detailed information about the Evaluation are available in [Evaluation document](./Evaluation.md#costs)
