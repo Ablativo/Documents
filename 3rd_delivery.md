@@ -58,10 +58,9 @@
 
 Detailed information about the functionalities implementantion state are available in [Evaluation document](./Evaluation.md#state)
 
-### Evaluation (//TODO)
+### Evaluation
 * **3rd Delivery**: 
 To overcome the difficulties raised by the Covid-19 situation, the lack of a production board and the struggles to make experiment inside a real environment we have tried to imagine and analyze some of the possible scenarios.
-This needs led us to focus on the precision and accuracy of the beacon related to the position of the user.
-* **Future work**:
+This needs led us to focus on the precision and accuracy of the beacon related to the position of the user. We also conducted an overall cost analysis of the project
 
 Detailed information about the Evaluation are available in [Evaluation document](./Evaluation.md#costs)
