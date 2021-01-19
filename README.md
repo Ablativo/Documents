@@ -24,20 +24,24 @@ However, here comes our application, Ablativo, intending to bring also those lea
 
 
 
-## Video presentations
+## Presentations
 
 #### 1st Delivery
-* ##### [Presentation of the idea and evaluation plan](https://youtu.be/VOPcMZa7giw)
-* ##### [Presentation of the technical components and architecture](https://youtu.be/TFFulUF80F0)
+* ##### [Video presentation of the idea and evaluation plan](https://youtu.be/VOPcMZa7giw)
+* ##### [Video presentation of the technical components and architecture](https://youtu.be/TFFulUF80F0)
 
 #### 2nd Delivery
-* ##### [Presentation from a technical point of view](https://youtu.be/0feroPLvXQs)
-* ##### [Presentation of the evaluation plan](https://youtu.be/-5nHsma9eOs)
-* ##### [Presentation of the future plan and evaluation](https://youtu.be/FWWQo9qq54A)
+* ##### [Video presentation from a technical point of view](https://youtu.be/0feroPLvXQs)
+* ##### [Video presentation of the evaluation plan](https://youtu.be/-5nHsma9eOs)
+* ##### [Video presentation of the future plan and evaluation](https://youtu.be/FWWQo9qq54A)
 
 #### 3rd Delivery
 * ##### [Presentation of the project](https://drive.google.com/file/d/1Ujq9Yz0WsPXhSHI_SW-Li24VVyOngUxq/view?usp=sharing)
 * ##### [Video demonstration of the project](https://youtu.be/RlOGunUXhhg)
+
+## Blog Post
+* ##### [Ablativo: The IoT to bring people inside museums](https://www.hackster.io/ivagnesmanuel/ablativo-the-iot-to-bring-people-inside-museums-c22b2a)
+
 ---
 ## Authors
 We are three computer engineers and students of the MSc in engineering in computer science at "La Sapienza" University of Rome, this project has been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles
