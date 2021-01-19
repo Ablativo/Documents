@@ -36,7 +36,7 @@ However, here comes our application, Ablativo, intending to bring also those lea
 * ##### [Video presentation of the future plan and evaluation](https://youtu.be/FWWQo9qq54A)
 
 #### 3rd Delivery
-* ##### [Presentation of the project](https://drive.google.com/file/d/1Ujq9Yz0WsPXhSHI_SW-Li24VVyOngUxq/view?usp=sharing)
+* ##### [Presentation of the project](https://drive.google.com/file/d/1PdfSkeKSDs8KpLwqYHe2mntMe7kWI_NF/view?usp=sharing)
 * ##### [Video demonstration of the project](https://youtu.be/RlOGunUXhhg)
 
 ## Blog Post
