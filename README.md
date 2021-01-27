@@ -6,6 +6,9 @@ Museums, the house of muses, some people love them, but for some, it is no more 
 However, here comes our application, Ablativo, intending to bring also those least interested people to the wonderful world of museums.
 
 ---
+## Blog Post
+* ##### [Ablativo: The IoT to bring people inside museums](https://www.hackster.io/ivagnesmanuel/ablativo-the-iot-to-bring-people-inside-museums-c22b2a)
+
 ## Documents
 
 #### Main
@@ -39,12 +42,19 @@ However, here comes our application, Ablativo, intending to bring also those lea
 * ##### [Presentation of the project](https://drive.google.com/file/d/1Pv7AdXY2aryi7SJMljHsR7hD8849sb5h/view?usp=sharing)
 * ##### [Video demonstration of the project](https://youtu.be/RlOGunUXhhg)
 
-## Blog Post
-* ##### [Ablativo: The IoT to bring people inside museums](https://www.hackster.io/ivagnesmanuel/ablativo-the-iot-to-bring-people-inside-museums-c22b2a)
+
+
+
+## Code repositories
+* ##### [Mobile App](https://github.com/Ablativo/Ablativo_Mobile)
+* ##### [Backend](https://github.com/Ablativo/Ablativo_Backend)
+* ##### [Dashboard](https://github.com/Ablativo/Ablativo_dashboard)
+* ##### [Mbed Devices](https://github.com/Ablativo/Ablativo_mbed_devices)
+
 
 ---
 ## Authors
-We are three computer engineers and students of the MSc in engineering in computer science at "La Sapienza" University of Rome, this project has been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles
+We are three computer engineers and students of the MSc in engineering in computer science at "La Sapienza" University of Rome, and this project has been developed as part of the Internet of Things 2019-2020 course. Here you can find links to our LinkedIn profiles
 * ##### [Valerio Coretti](https://www.linkedin.com/in/valerio-coretti-2913721a3)
 * ##### [Manuel Ivagnes](https://www.linkedin.com/in/manuel-ivagnes-4a5ba018b)
 * ##### [Fabio Caputo](https://www.linkedin.com/in/fabio-caputo-41163b171)
